@@ -1,0 +1,144 @@
+.form{
+	width: 450px;
+	position: absolute;
+	top: 5%;
+	left: 40%;
+	background-color: #F2F2F2;
+}
+
+.form p{
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 28px;
+}
+
+legend{
+	display: inline-block;
+	position: relative;
+	margin: 20px;
+	font-size: 24px;
+}
+.number{
+	position: relative;
+	padding: 3px 10px;
+	margin: 0px 6px;
+	border-radius: 180px;
+	text-align: center;
+	background: #04B431;
+	color: azure;
+}
+
+.fields{
+	position: relative;
+	text-align: center;
+}
+
+.fields input{
+	position: relative;
+	margin: 10px 10px 0px 10px;
+	border-color: darkgray;
+	width: 90%;
+	height: 45px;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	outline: none;
+	text-indent: 3em;
+	font-size: 14px;
+	background-color: inherit;
+}
+
+.fields input[id="user"]{
+	background-image: url(img/user2.png);
+	background-repeat: no-repeat;
+}
+
+.fields input[id="datepicker"]{
+	background-image: url(img/calendar-icons.png);
+	background-repeat: no-repeat;
+}
+
+.fields input[id="address"]{
+	background-image: url(img/home2.png);
+	background-repeat: no-repeat;
+}
+
+.fields input[id="phone"]{
+	background-image: url(img/phone2.png);
+	background-repeat: no-repeat;
+}
+
+.fields input[id="user"]:focus{
+	border-color: #04B431;
+	background-image: url(img/user.png);
+	background-repeat: no-repeat;
+}
+
+.fields input[id="datepicker"]:focus{
+	border-color: #04B431;
+	background-image: url(img/calendar-icons2.png);
+	background-repeat: no-repeat;
+}
+
+.fields input[id="address"]:focus{
+	border-color: #04B431;
+	background-image: url(img/home.png);
+	background-repeat: no-repeat;
+}
+
+.fields input[id="phone"]:focus{
+	border-color: #04B431;
+	background-image: url(img/phone.png);
+	background-repeat: no-repeat;
+}
+
+.fields input[id="email"]{
+	background-image: url(img/mail2.png);
+	background-repeat: no-repeat;
+}
+
+.fields input[id="email"]:focus{
+	border-color: #04B431;
+	background-image: url(img/mail.png);
+	background-repeat: no-repeat;
+}
+
+
+.fields input[id="pass"]{
+	background-image: url(img/key2.png);
+	background-repeat: no-repeat;
+}
+
+.fields input[id="pass"]:focus{
+	border-color: #04B431;
+	background-image: url(img/key.png);
+	background-repeat: no-repeat;
+}
+/*
+
+.ok{
+	position: relative;
+	margin: 0px 20px 20px 0px;
+	width: 165px;
+	left: 60%;
+}
+
+.ok input{
+*/
+.fields input[type="submit"]{
+	position: relative;
+	margin: 20px 20px 20px 0px;
+	height: 50px;
+	text-align: center;
+	border: none;
+	font-size: 18px; 
+	background-color: #04B431;
+	color: azure;
+}
+
+#warn{
+	position: absolute;
+	color: red;
+	top: 12%;
+	left: 49%;
+}
