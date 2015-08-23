@@ -1,49 +1,37 @@
-//function validPhone(){
-//	var re = /^[\+]?(\d+)([\-]+)?/;
-//	var phone = document.getElementById("phone").value;
-//	var valid = re.test(phone);
-//	var warning = document.getElementById("warn");
-//	if (valid) warning.outerHTML;
-//	else warning.innerHTML = "Wrong Phone";
-//	return valid;
-//}
-//
-//function validMail(){
-//	var re = /^([a-z0-9])(\w|[.]|-|_)+([a-z0-9])@([a-z0-9])([a-z0-9.-]*)([a-z0-9])([.]{1})([a-z]{2,4})$/;
-//	var mail = document.getElementById("email").value;
-//	var valid = re.test(mail);
-//	var warning = document.getElementById("warn");
-//	if (valid) return true;
-//	else return false;
-//	return valid;
-//}
-//
-//function valid(){
-//	if(!validPhone()) document.getElementById("warn").innerHTML = "wrong phone";
-//	if(!validMail()) document.getElementById("warn").innerHTML = "wrong mail";	
-//}
+function validPhone(){
+	var re = /^[\+]?(\d+)([\-]+)?/;
+	var phone = document.getElementById("phone").value;
+	var valid = re.test(phone);
+	var warning = document.getElementById("warn_phone");
+	if (valid) warning.innerHTML = " ";
+	else warning.innerHTML = "Неправильный номер";
+	return valid;
+}
 
-function showError(container, errorMessage) {
-      container.className = 'error';
-      var msgElem = document.createElement('span');
-      msgElem.className = "error-message";
-      msgElem.innerHTML = errorMessage;
-      container.appendChild(msgElem);
-    }
+function validMail(){
+	var re = /^([a-z0-9])(\w|[.]|-|_)+([a-z0-9])@([a-z0-9])([a-z0-9.-]*)([a-z0-9])([.]{1})([a-z]{2,4})$/;
+	var mail = document.getElementById("email").value;
+	var valid = re.test(mail);
+	var warning = document.getElementById("warn_mail");
+	if (valid) warning.innerHTML = " ";
+	else warning.innerHTML = "Неправильный e-mail";
+	return valid;
+}
 
- function resetError(container) {
-	 container.className = '';
-	 if (container.lastChild.className == "error-message") {
-		 container.removeChild(container.lastChild);
-     }
- }
+function equalPass(){
+	var pass = document.getElementById("pass").value;
+	var cpass = document.getElementById("cpass").value;
+	var warning = document.getElementById("warn_pass");
+	if(pass == cpass) warning.innerHTML = " ";
+	else warning.innerHTML = "Пароли не совпадают";
+}
 
-function validate(form) {
-	var elems = form.elements;
+function validAddr{
+	var re = '';
+	var addr = document.getElementById("address").value;
+}
 
-      resetError(elems.pass.parentNode);
-      if (elems.pass.value != elems.cpass.value) {
-        showError(elems.pass.parentNode, ' Пароли не совпадают.');
-      }
-
-    }
+function unique(){
+	var login = document.getElementById("login").value;
+	
+}

@@ -53,24 +53,14 @@ legend{
 	background-repeat: no-repeat;
 }
 
-.fields input[id="datepicker"]{
-	background-image: url(img/calendar-icons.png);
-	background-repeat: no-repeat;
-}
-
-.fields input[id="address"]{
-	background-image: url(img/home2.png);
-	background-repeat: no-repeat;
-}
-
-.fields input[id="phone"]{
-	background-image: url(img/phone2.png);
-	background-repeat: no-repeat;
-}
-
 .fields input[id="user"]:focus{
 	border-color: #04B431;
 	background-image: url(img/user.png);
+	background-repeat: no-repeat;
+}
+
+.fields input[id="datepicker"]{
+	background-image: url(img/calendar-icons.png);
 	background-repeat: no-repeat;
 }
 
@@ -80,9 +70,19 @@ legend{
 	background-repeat: no-repeat;
 }
 
+.fields input[id="address"]{
+	background-image: url(img/home2.png);
+	background-repeat: no-repeat;
+}
+
 .fields input[id="address"]:focus{
 	border-color: #04B431;
 	background-image: url(img/home.png);
+	background-repeat: no-repeat;
+}
+
+.fields input[id="phone"]{
+	background-image: url(img/phone2.png);
 	background-repeat: no-repeat;
 }
 
@@ -103,13 +103,23 @@ legend{
 	background-repeat: no-repeat;
 }
 
+.fields input[id="login"]{
+	background-image: url(img/user2.png);
+	background-repeat: no-repeat;
+}
 
-.fields input[id="pass"]{
+.fields input[id="login"]:focus{
+	border-color: #04B431;
+	background-image: url(img/user.png);
+	background-repeat: no-repeat;
+}
+
+.fields input[type="password"]{
 	background-image: url(img/key2.png);
 	background-repeat: no-repeat;
 }
 
-.fields input[id="pass"]:focus{
+.fields input[type="password"]:focus{
 	border-color: #04B431;
 	background-image: url(img/key.png);
 	background-repeat: no-repeat;
@@ -127,18 +137,18 @@ legend{
 */
 .fields input[type="submit"]{
 	position: relative;
-	margin: 20px 20px 20px 0px;
+	margin: 20px;
 	height: 50px;
-	text-align: center;
+	padding: 0px 40px 0px 0px;
 	border: none;
 	font-size: 18px; 
 	background-color: #04B431;
 	color: azure;
 }
 
-#warn{
-	position: absolute;
+.warn{
+	position: relative;
 	color: red;
-	top: 12%;
-	left: 49%;
+	top: 10%;
+	left: 30%;
 }

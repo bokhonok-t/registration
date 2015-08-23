@@ -1,0 +1,34 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:400,200,300,100,500,700,600,800,900);
+
+
+.search {
+	position: absolute;
+	right: 4%;
+	width: 200px; 
+	height: 31px;
+	border-bottom: 1px solid #000; 
+    min-height: 20px;
+	top: 5%;
+   }
+
+
+.searchform input[type = "search"] {
+	color: gray;
+	font: 'Raleway', sans-serif;
+    border: none; 
+    outline: none;
+    -webkit-appearance: none;
+    width: 166px;
+   
+}
+
+.searchform input[type = "submit"] {
+	position: relative;
+	top: 3px;
+	width: 27px;
+	height: 25px;
+    border: none;
+    background:  url(img/search.png) no-repeat 50% 50%;
+	cursor: pointer;
+	vertical-align: middle;
+}
