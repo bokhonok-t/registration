@@ -124,17 +124,13 @@ legend{
 	background-image: url(img/key.png);
 	background-repeat: no-repeat;
 }
-/*
 
-.ok{
-	position: relative;
-	margin: 0px 20px 20px 0px;
-	width: 165px;
-	left: 60%;
+.fields a{
+	text-decoration: none;
+	font-size: 20px;
+	color: black
 }
 
-.ok input{
-*/
 .fields input[type="submit"]{
 	position: relative;
 	margin: 20px;
@@ -144,6 +140,10 @@ legend{
 	font-size: 18px; 
 	background-color: #04B431;
 	color: azure;
+}
+
+.fields input[type="submit"]:active{
+	background-color: #088A29;
 }
 
 .warn{

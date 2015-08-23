@@ -1,5 +1,4 @@
 <?
-	session_start();
 	include 'db.php';
 ?>
 <!DOCTYPE>
@@ -67,18 +66,18 @@ if(isset($_POST['submit'])){
 		$uploaddir = 'img/profiles/'; //папка, где хранятся изображения
 		$uploadfile = $uploaddir.basename($_FILES['userfile']['name']);
 		move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile);//помещаем загруженный файл в папку
-		$fullpath = $uploaddir.$uploadfile;
 		$mime = $_FILES["userfile"]["type"]; //узнаем расширение
+		echo $mime;
 		if ($mime != "image/gif" and $mime !="image/jpg" and $mime !="image/png") {
     		echo '<div class="warn_img">("Доступна загрузка только gif, png, jpg, файлов")</div>';
 }
 		
-		$sql = 'INSERT INTO user(f_name, l_name, date_of_birth, address, phone, email, login, pass, reg_date, last_act, salt, photo) VALUES("'.$fname.'", "'.$lname.'", "'.$date.'", "'.$address.'", "'.$phone.'", "'.$email.'", "'.$log.'", "'.$pass.'", "'.$tm.'", "'.$tm.'", "'.$salt.'", "'.$fullpath.'")';
+		$sql = 'INSERT INTO user(f_name, l_name, date_of_birth, address, phone, email, login, pass, reg_date, last_act, salt, photo) VALUES("'.$fname.'", "'.$lname.'", "'.$date.'", "'.$address.'", "'.$phone.'", "'.$email.'", "'.$log.'", "'.$pass.'", "'.$tm.'", "'.$tm.'", "'.$salt.'", "'.$uploadfile.'")';
 
 	if(!mysql_query($sql)){
 		echo "error";
 	}
-	else{ //авторизуем пользователя, если регистрация прошла удачно, создав куки
+	else{ 
 		header('Location: enter.php');
 		exit;
 	}

@@ -26,10 +26,10 @@ function equalPass(){
 	else warning.innerHTML = "Пароли не совпадают";
 }
 
-function validAddr{
-	var re = '';
-	var addr = document.getElementById("address").value;
-}
+//function validAddr{
+//	var re = '';
+//	var addr = document.getElementById("address").value;
+//}
 
 function unique(){
 	var login = document.getElementById("login").value;
