@@ -1,3 +1,4 @@
+
 .form{
 	width: 450px;
 	position: absolute;
@@ -48,12 +49,12 @@ legend{
 	background-color: inherit;
 }
 
-.fields input[id="user"]{
+.fields input[id="fname"],input[id="lname"]{
 	background-image: url(img/user2.png);
 	background-repeat: no-repeat;
 }
 
-.fields input[id="user"]:focus{
+.fields input[id="fname"]:focus,input[id="lname"]:focus{
 	border-color: #04B431;
 	background-image: url(img/user.png);
 	background-repeat: no-repeat;
@@ -62,6 +63,11 @@ legend{
 .fields input[id="datepicker"]{
 	background-image: url(img/calendar-icons.png);
 	background-repeat: no-repeat;
+}
+
+::-webkit-calendar-picker-indicator{
+	position: relative;
+	right: 345px;
 }
 
 .fields input[id="datepicker"]:focus{
@@ -146,9 +152,79 @@ legend{
 	background-color: #088A29;
 }
 
+.file_upload{
+    position: relative;
+    overflow: hidden;
+    font-size: 1em;        
+    height: 50px;
+    line-height: 2em;
+}
+.file_upload > button{
+    float: left;
+	margin-left: 21px;
+    width: 180px;
+	border: none;
+    height: 100%;
+	background-image: url(img/paper862.png);
+	background-repeat: no-repeat;
+	background-position: left;
+}
+
+.file_upload > div{
+    padding-left: 1em      /* example */
+}
+
+.file_upload input[type=file]{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(20);
+    letter-spacing: 10em;     /* IE 9 fix */
+    -ms-transform: scale(20); /* IE 9 fix */
+    opacity: 0;
+    cursor: pointer
+}
 .warn{
 	position: relative;
 	color: red;
 	top: 10%;
-	left: 30%;
+	right: -9%;
+}
+
+.error{
+	position: absolute;
+	color: red;
+	top: 11%;
+	left: 44%;
+}
+.lang{
+	position: absolute;
+	top: 40%;
+	left: 58%;
+}
+.lang input[name="ru"]{
+	position: relative;
+	width: 32px;
+	height: 32px;
+	border: none;
+	background-color: inherit;
+	color: inherit;
+	background-image: url(img/russia-flag-32x32.png);
+	background-repeat: no-repeat;
+	outline: none;
+}
+
+.lang input[name="en"]{
+	position: relative;
+	width: 32px;
+	height: 32px;
+	margin-right: 10px;
+	border: none;
+	background-color: inherit;
+	color: inherit;
+	background-image: url(img/united.png);
+	background-repeat: no-repeat;
+	outline: none;
 }

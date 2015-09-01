@@ -1,46 +1,56 @@
 <?
+	session_start();
 	include 'db.php';
+	if($_SESSION['lang'] == "en"){
+		include('languages/en.php');
+	}
+	else include('languages/ru.php');
 ?>
 <!DOCTYPE>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<link type="text/css" rel="stylesheet" href="./style.css">
-		<title>Регистрация</title>
+		<title><? echo $reg?></title>
 		<script type="text/javascript" src="index.js"></script>
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  	<script>
-  		$(function() {
-    		$( "#datepicker" ).datepicker({dateFormat:'yy-mm-dd'});
-  		});
-  	</script>
 	</head>
 	<body>
 		<div class = "form">
-			<p>Регистрация</p>		
+			<p><? echo $reg?></p>		
 			<div class = "fields">
 				<form method="post" action="index.php" enctype="multipart/form-data">
-					<legend><span class="number">1</span>Личная информация</legend>
-					<input type="text" id="user" name="lname" required placeholder="Фамилия">
-					<input type="text" id="user" name="fname"  required placeholder="Имя">
-					<input type="text" id="datepicker" name="date" required placeholder="Дата Рождения">
-					<input type="text" id="address" name="address" required placeholder = "Адрес">
-					<input type="text" id="phone" name="phone" onblur="validPhone();" required placeholder="Моб. номер">
+					<legend><span class="number">1</span><? echo $info?></legend>
+					<input type="text" id="lname" onblur = "validLName();" name="lname" required placeholder="<? echo $lname?>" alt="Фамилия">
+					<div class="warn" id="warn_lname"></div>
+					<input type="text" id="fname" onblur="validName();" name="fname"  required placeholder="<? echo $fname?>" >
+					<div class="warn" id="warn_fname"></div>
+					<input type="date" max = "2005-12-31" min = "1945-12-31" value="1983-01-01" id="datepicker" name="date" required placeholder="<? echo $birthday?>">
+					<input type="text" id="address" onblur="validAdd();" name="address" required placeholder = "<? echo $address?>">
+					<div class="warn" id="warn_add"></div>
+					<input type="text" id="phone" name="phone" onblur="validPhone();" required placeholder="<? echo $phone?>">
 					<div class="warn" id="warn_phone"></div>
 					<input type="email" id="email" name="email" onblur="validMail();" required placeholder="E-mail">
 					<div class="warn" id="warn_mail"></div>
 				
-					<legend><span class="number">2</span>Основная информация</legend>
-					<input type="text" id="login" onblur="unique();" name="login" required placeholder="Логин">
-					<input type="password" id="pass" name="pass" required placeholder="Пароль">
-					<input type="password" id="cpass" onblur="equalPass();" name="cpass" required placeholder="Повторите пароль">
+					<legend><span class="number">2</span><? echo $info2?></legend>
+					<input type="text" id="login" onblur="unique();" name="login" required placeholder="<? echo $name?>">
+					<div class="warn" id="warn_login"></div>
+					<input type="password" id="pass" onblur="validPass();" name="pass" required placeholder="<? echo $pass?>">
+					<div class="warn" id="warn_pass_l"></div>
+					<input type="password" id="cpass" onblur="equalPass();" name="cpass" required placeholder="<? echo $cpass?>">
 					<div class="warn" id="warn_pass"></div>
 					
-					<legend><span class="number">3</span>Фотография</legend>
-					<input type="file" name = "userfile">
-					<input type="submit" name ="submit" value="Зарегистрировать">
+					<legend><span class="number">3</span><? echo $photo?></legend>
+					 <div class="file_upload">
+        				<button type="button"><? echo $choose?></button>
+        				<input type="file" id = "file" name = "userfile" value="<? echo $uploadfile?>" required onchange="validFile();">
+    				</div>
+					
+					<div class="warn" id="war_file"></div>
+					<input type="submit" name ="submit" value="<? echo $sign?>">
 					
 					</form>
 			</div>
@@ -49,8 +59,15 @@
 	</body>
 	
 <?
+		
 if(isset($_POST['submit'])){
 	$correct = registrationCorrect(); //записываем в переменную результат registrationCorrect()
+	$uploaddir = 'img/profiles/'; //папка, где хранятся изображения
+	$uploadfile = $uploaddir.basename($_FILES['userfile']['name']);
+	//$whitelist = array(".jpg", ".gif", ".png");
+ 	//foreach ($whitelist as $item) {
+		if(preg_match("/.jpg\$/i", $_FILES['userfile']['name']) or preg_match("/.gif\$/i", $_FILES['userfile']['name']) or preg_match("/.png\$/i", $_FILES['userfile']['name']) ) {
+	
 	if ($correct){ //если данные верны, запишем их в базу данных
 		$fname = $_POST['fname'];
 		$lname = $_POST['lname'];
@@ -62,16 +79,8 @@ if(isset($_POST['submit'])){
 		$salt = mt_rand(100, 999); //переменная, чтобы обеспечить большую безопасность
 		$pass = md5(md5($_POST['pass']).$salt); //хэш пароля
 		$tm = date('Y-m-d');
-		
-		$uploaddir = 'img/profiles/'; //папка, где хранятся изображения
-		$uploadfile = $uploaddir.basename($_FILES['userfile']['name']);
-		move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile);//помещаем загруженный файл в папку
-		$mime = $_FILES["userfile"]["type"]; //узнаем расширение
-		echo $mime;
-		if ($mime != "image/gif" and $mime !="image/jpg" and $mime !="image/png") {
-    		echo '<div class="warn_img">("Доступна загрузка только gif, png, jpg, файлов")</div>';
-}
-		
+	 	move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile);//помещаем загруженный файл в папку		
+			
 		$sql = 'INSERT INTO user(f_name, l_name, date_of_birth, address, phone, email, login, pass, reg_date, last_act, salt, photo) VALUES("'.$fname.'", "'.$lname.'", "'.$date.'", "'.$address.'", "'.$phone.'", "'.$email.'", "'.$log.'", "'.$pass.'", "'.$tm.'", "'.$tm.'", "'.$salt.'", "'.$uploadfile.'")';
 
 	if(!mysql_query($sql)){
@@ -81,11 +90,11 @@ if(isset($_POST['submit'])){
 		header('Location: enter.php');
 		exit;
 	}
-}
-	else{
-		echo "error validation";
 	}
-
+		else echo $warn2;
+		}
+		else echo $warn;
+	
 }
 
 function registrationCorrect() {
@@ -93,11 +102,16 @@ function registrationCorrect() {
 	if (!preg_match('/^([a-zA-Z0-9])(\w|-|_)+([a-z0-9])$/is', $_POST['login'])) return false; // соответствует ли логин регулярному выражению
 	if (strlen($_POST['pass']) < 5) return false;//не меньше ли 5 символов длина пароля
 	if ($_POST['pass'] != $_POST['cpass'])return false; //равен ли пароль его подтверждению
+	
 	$login = $_POST['login'];
 	$res = mysql_query("SELECT * FROM user WHERE login=$login");
-	if (mysql_num_rows($res) != 0) return false; // проверка на существование в БД такого же логина
+	if (mysql_num_rows($res) != 0){echo "no"; return false;} // проверка на существование в БД такого же логина
 	return true; //если выполнение функции дошло до этого места, возвращаем true 
 }
+
+$login = $_POST['login'];
+$res = mysql_query('SELECT * FROM user WHERE login="'.$login.'"') or die(mysql_error());
+if (mysql_num_rows($res) != 0) echo "no";
 
 ?>
 	
