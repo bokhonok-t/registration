@@ -1,32 +1,50 @@
-
+body{
+	background-color: #F2F2F2;
+}
 .form{
 	width: 450px;
-	position: absolute;
-	top: 5%;
-	left: 40%;
-	background-color: #F2F2F2;
+	margin: auto;
+	margin-top: 30px;
+	background-color: #fff;
+	
 }
 
 .form p{
 	text-align: center;
-	font-family: sans-serif;
 	font-size: 28px;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 400;
+	background-color: #03a9f4	;
+	margin: 0;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	color: white;
 }
 
 legend{
-	display: inline-block;
-	position: relative;
-	margin: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
 	font-size: 24px;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 400;
+	display: flex;
+	align-items: center;
+	justify-content: left;
 }
 .number{
 	position: relative;
-	padding: 3px 10px;
-	margin: 0px 6px;
-	border-radius: 180px;
-	text-align: center;
-	background: #04B431;
+	margin: 0px 10px;
+	margin-left: 15px;
+	padding: 15px;
+	border-radius: 50% 50%;
+	display: block;
+	background: #ff9800;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 400;
 	color: azure;
+	line-height: 15px;
+	width: 15px !important;
+	height: 15px !important;
 }
 
 .fields{
@@ -45,24 +63,29 @@ legend{
 	border-top: none;
 	outline: none;
 	text-indent: 3em;
-	font-size: 14px;
+	font-size: 15px;
 	background-color: inherit;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 400;
 }
-
 .fields input[id="fname"],input[id="lname"]{
 	background-image: url(img/user2.png);
 	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .fields input[id="fname"]:focus,input[id="lname"]:focus{
 	border-color: #04B431;
 	background-image: url(img/user.png);
 	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .fields input[id="datepicker"]{
 	background-image: url(img/calendar-icons.png);
 	background-repeat: no-repeat;
+	background-position: left;
+	font-size: 15px;
 }
 
 ::-webkit-calendar-picker-indicator{
@@ -74,82 +97,105 @@ legend{
 	border-color: #04B431;
 	background-image: url(img/calendar-icons2.png);
 	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .fields input[id="address"]{
 	background-image: url(img/home2.png);
 	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .fields input[id="address"]:focus{
 	border-color: #04B431;
 	background-image: url(img/home.png);
 	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .fields input[id="phone"]{
 	background-image: url(img/phone2.png);
 	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .fields input[id="phone"]:focus{
 	border-color: #04B431;
 	background-image: url(img/phone.png);
 	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .fields input[id="email"]{
 	background-image: url(img/mail2.png);
 	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .fields input[id="email"]:focus{
 	border-color: #04B431;
 	background-image: url(img/mail.png);
 	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .fields input[id="login"]{
 	background-image: url(img/user2.png);
 	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .fields input[id="login"]:focus{
 	border-color: #04B431;
 	background-image: url(img/user.png);
 	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .fields input[type="password"]{
 	background-image: url(img/key2.png);
 	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .fields input[type="password"]:focus{
 	border-color: #04B431;
 	background-image: url(img/key.png);
 	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .fields a{
 	text-decoration: none;
 	font-size: 20px;
-	color: black
+	color: black;
+	padding-bottom: 15px;
+	display: block;
 }
 
 .fields input[type="submit"]{
 	position: relative;
 	margin: 20px;
 	height: 50px;
-	padding: 0px 40px 0px 0px;
+	padding: 0px 60px 0px 0px;
 	border: none;
-	font-size: 18px; 
-	background-color: #04B431;
+	font-size: 21px; 
+	background-color: #40c4ff;
 	color: azure;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 400;
+	cursor: pointer;
 }
-
+.form a{
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 400;
+	font-size: 21px
+}
 .fields input[type="submit"]:active{
-	background-color: #088A29;
+	background-color: #80d8ff;
+}
+.fields input[type="submit"]:hover{
+	background-color: #80d8ff;
 }
 
 .file_upload{
@@ -190,19 +236,26 @@ legend{
 	position: relative;
 	color: red;
 	top: 10%;
-	right: -9%;
+	padding: 10px;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 400;
 }
 
 .error{
-	position: absolute;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 400;
 	color: red;
-	top: 11%;
-	left: 44%;
+	text-align: center;
+}
+.error p{
+	margin: 0;
+	padding: 0;
 }
 .lang{
 	position: absolute;
-	top: 40%;
-	left: 58%;
+	top: 15px;
+	right: 30px;
+	color: white;
 }
 .lang input[name="ru"]{
 	position: relative;

@@ -1,6 +1,7 @@
 <?
 	session_start();
 	include 'db.php';
+include 'response.php';
 	if($_SESSION['lang'] == "en"){
 		include('languages/en.php');
 	}
@@ -16,14 +17,15 @@
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
 		<div class = "form">
 			<p><? echo $reg?></p>		
 			<div class = "fields">
-				<form method="post" action="index.php" enctype="multipart/form-data">
+				<form name = "reg" method="post" action="index.php" enctype="multipart/form-data">
 					<legend><span class="number">1</span><? echo $info?></legend>
-					<input type="text" id="lname" onblur = "validLName();" name="lname" required placeholder="<? echo $lname?>" alt="Фамилия">
+					<input  type="text" id="lname" onblur = "validLName();" name="lname" required placeholder="<? echo $lname?>" alt="Фамилия">
 					<div class="warn" id="warn_lname"></div>
 					<input type="text" id="fname" onblur="validName();" name="fname"  required placeholder="<? echo $fname?>" >
 					<div class="warn" id="warn_fname"></div>
@@ -36,6 +38,8 @@
 					<div class="warn" id="warn_mail"></div>
 				
 					<legend><span class="number">2</span><? echo $info2?></legend>
+					<input name="releFio" type="hidden">
+
 					<input type="text" id="login" onblur="unique();" name="login" required placeholder="<? echo $name?>">
 					<div class="warn" id="warn_login"></div>
 					<input type="password" id="pass" onblur="validPass();" name="pass" required placeholder="<? echo $pass?>">
@@ -59,7 +63,7 @@
 	</body>
 	
 <?
-		
+$_SESSION['log'] = $_POST['login'];
 if(isset($_POST['submit'])){
 	$correct = registrationCorrect(); //записываем в переменную результат registrationCorrect()
 	$uploaddir = 'img/profiles/'; //папка, где хранятся изображения
@@ -71,29 +75,30 @@ if(isset($_POST['submit'])){
 	if ($correct){ //если данные верны, запишем их в базу данных
 		$fname = $_POST['fname'];
 		$lname = $_POST['lname'];
-		$date = $_POST['date'];
+		$dateb = $_POST['date'];
 		$address = $_POST['address'];
 		$phone = $_POST['phone'];
 		$email = htmlspecialchars($_POST['email']);
 		$log = htmlspecialchars($_POST['login']);
+		
 		$salt = mt_rand(100, 999); //переменная, чтобы обеспечить большую безопасность
 		$pass = md5(md5($_POST['pass']).$salt); //хэш пароля
 		$tm = date('Y-m-d');
 	 	move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile);//помещаем загруженный файл в папку		
 			
-		$sql = 'INSERT INTO user(f_name, l_name, date_of_birth, address, phone, email, login, pass, reg_date, last_act, salt, photo) VALUES("'.$fname.'", "'.$lname.'", "'.$date.'", "'.$address.'", "'.$phone.'", "'.$email.'", "'.$log.'", "'.$pass.'", "'.$tm.'", "'.$tm.'", "'.$salt.'", "'.$uploadfile.'")';
+		$sql = 'INSERT INTO user(f_name, l_name, date_of_birth, address, phone, email, login, pass, reg_date, last_act, salt, photo) VALUES("'.$fname.'", "'.$lname.'", "'.$dateb.'", "'.$address.'", "'.$phone.'", "'.$email.'", "'.$log.'", "'.$pass.'", "'.$tm.'", "'.$tm.'", "'.$salt.'", "'.$uploadfile.'")';
 
 	if(!mysql_query($sql)){
 		echo "error";
 	}
 	else{ 
-		header('Location: enter.php');
+		header('Location: enter.php'); //в случае удачно регистрации переход на страницу авторизации
 		exit;
 	}
 	}
-		else echo $warn2;
+		else echo $warn2; // вывод ошибки на выбраном ранее языке в случае неправильно заполнения одного из полей
 		}
-		else echo $warn;
+		else echo $warn; // вывод ошибки на выбраном ранее языке в случае загрузки неправильного формата картинки
 	
 }
 
@@ -105,13 +110,9 @@ function registrationCorrect() {
 	
 	$login = $_POST['login'];
 	$res = mysql_query("SELECT * FROM user WHERE login=$login");
-	if (mysql_num_rows($res) != 0){echo "no"; return false;} // проверка на существование в БД такого же логина
+	if (mysql_num_rows($res) != 0)return false; // проверка на существование в БД такого же логина
 	return true; //если выполнение функции дошло до этого места, возвращаем true 
 }
-
-$login = $_POST['login'];
-$res = mysql_query('SELECT * FROM user WHERE login="'.$login.'"') or die(mysql_error());
-if (mysql_num_rows($res) != 0) echo "no";
 
 ?>
 	

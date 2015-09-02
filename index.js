@@ -75,13 +75,19 @@ function validFile(){
 }
 
 function unique(){
-	var login = document.getElementById("login").value;
-	$.post("index.php", {login:$(this).val()}), function(data){
-		if (data == 'no'){
-			$("#warn_login").fadeIn(200,0.1,function(){
-				$(this).html('Это имя уже занято');
-});
-		}
-	}
-	
-}
+        $.ajax({
+            type: "POST",
+            url: "response.php",
+            data: { action: 'login', user: document.reg.login.value },
+            cache: false,
+            success: function(response){
+                if(response == 'on'){
+                    $("#warn_login").text("Имя занято").css("color","red");
+                    document.reg.releFio.value = 'off';
+                }else{
+                    $("#warn_login").text(" ");
+                    document.reg.releFio.value = 'on';
+                };
+            }
+        });
+    };
