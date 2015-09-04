@@ -88,13 +88,15 @@ if(isset($_POST['submit'])){
 			
 		$sql = 'INSERT INTO user(f_name, l_name, date_of_birth, address, phone, email, login, pass, reg_date, last_act, salt, photo) VALUES("'.$fname.'", "'.$lname.'", "'.$dateb.'", "'.$address.'", "'.$phone.'", "'.$email.'", "'.$log.'", "'.$pass.'", "'.$tm.'", "'.$tm.'", "'.$salt.'", "'.$uploadfile.'")';
 
-	if(!mysql_query($sql)){
+	if(!mysqli_query($dblink, $sql)){
 		echo "error";
 	}
-	else{ 
+	else{
+		mysqli_free_result($sql);
 		header('Location: enter.php'); //в случае удачно регистрации переход на страницу авторизации
 		exit;
 	}
+		mysqli_close($dblink);
 	}
 		else echo $warn2; // вывод ошибки на выбраном ранее языке в случае неправильно заполнения одного из полей
 		}

@@ -50,8 +50,10 @@ else require("languages/ru.php");
 
 <?
 
-$sql = mysql_query('SELECT * from user where id ="'.$_SESSION['id'].'"') or die (mysql_error());
-$data = mysql_fetch_assoc($sql);
+$sql = mysqli_query($dblink, 'SELECT * from user where id ="'.$_SESSION['id'].'"') or die (mysql_error($dblink));
+$data = mysqli_fetch_assoc($sql);
+mysqli_free_result($sql);
+mysqli_close($dblink);
 $newdate = date("d.m.Y", strtotime($data[date_of_birth]));
 if(isset($_POST["logout"])){
 	session_unset();

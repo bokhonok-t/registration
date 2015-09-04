@@ -50,22 +50,24 @@ if(isset($_POST['signin'])){
 	if($login != "" && $pass != ""){
 		setcookie ("login", $login, time() + 50000, '/');
 		setcookie ("pass", md5($login.$pass), time() + 50000, '/'); //хешируем пароль
-		$salt = mysql_query('SELECT salt FROM user WHERE login="'.$login.'";') or die(mysql_error());
-		$row = mysql_fetch_assoc($salt);
+		$salt = mysqli_query($dblink, 'SELECT salt FROM user WHERE login="'.$login.'";') or die(mysqli_error($dblink));
+		$row = mysqli_fetch_assoc($salt);
 		$key = $row[salt];
-		$data = mysql_query('SELECT * FROM user WHERE login ="'.$login.'" AND pass = "'.md5(md5($pass).$key).'"') or die(mysql_error());
-		if(mysql_num_rows($data)<1){
+		$data = mysqli_query($dblink, 'SELECT * FROM user WHERE login ="'.$login.'" AND pass = "'.md5(md5($pass).$key).'"') or die(mysqli_error($dblink));
+		if(mysqli_num_rows($data)<1){
 			echo '<div class = "error">
 					<p>'.$warn3.'</p>
 			</div>';
 		}
 		else{
-		$arr = mysql_fetch_assoc($data);
+		$arr = mysqli_fetch_assoc($data);
 		
 		$_SESSION['id'] = $arr['id'];
+		mysqli_free_result($data);
 		header('Location: profile.php');
 		exit;
 		}
+		mysqli_close($dblink); 
 }
 }
 ?>

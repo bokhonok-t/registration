@@ -1,8 +1,8 @@
 <?
-$server = 'localhost';
-$user = 'root';
-$password = '';
-$dblink = mysql_connect($server, $user, $password);
-$database = 'regist';
-$selected = mysql_select_db($database, $dblink);
+$server = 'mysql.hostinger.com.ua';
+$user = 'u264045741_tanya';
+$password = 'hjlbyf1@@3';
+$database = 'u264045741_regis';
+$dblink = mysqli_connect($server, $user, $password, $database);
+
 ?>
