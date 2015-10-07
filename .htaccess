@@ -1,4 +1,4 @@
-
+AddDefaultCharset utf-8
 RewriteEngine on 
 php_flag display_errors 1
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -9,4 +9,4 @@ AddHandler x-httpd-php5 .js
 <FilesMatch "\.js$">
 SetHandler application/x-httpd-php
 </FilesMatch>
-DirectoryIndex enter.php
+DirectoryIndex start.php

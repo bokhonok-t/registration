@@ -38,9 +38,14 @@ else require("languages/ru.php");
 	<head>
 		<link rel="stylesheet" type="text/css" href="profile.css">
 		<title>Профиль</title>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="index.js"></script>
 	</head>
 	<body>
-				
+
 		</div>
 		<header>
 			<form method="post">
@@ -64,24 +69,26 @@ if(isset($_POST["logout"])){
 
    ?>
 	<div class="info">
-		<div class="data">
-			<table> 
-				<tr><th><? echo $data[f_name]?> <? echo $data[l_name]?></th></tr>
-		<tr>
-			<td><? echo $birthday?>:</td>
-			<td> <? echo $newdate?></td></tr>
-		<tr>
-			<td><? echo $ph?>:</td>
-			<td> <? echo $data[phone]?></td></tr>
-		<tr>
-			<td>E-mail:</td>
-			<td> <? echo $data[email]?></td></tr>
-		<tr>
-			<td><? echo $address?>:</td>
-			<td> <? echo $data[address]?></td></tr>
-				</table>
-		</div>
 		<div class = "photo"><img src="<? echo $data[photo]?>"/></div>
+		<div class="user_name"><? echo $data[f_name]?> <? echo $data[l_name]?></div>
+		<div class="user_location"><i class="icon fa fa-map-marker"></i><div class="location"><? echo $data[address]?></div></div>
+		<div id="open">О себе</div>
+		<div id="info">
+			<table>
+				<tr>
+					<td class="user_info_title"><? echo $birthday?>:</td>
+					<td class="user_info"> <? echo $newdate?></td>
+				</tr>
+				<tr>
+					<td class="user_info_title"><? echo $ph?>:</td>
+					<td class="user_info"> <? echo $data[phone]?></td>
+				</tr>
+				<tr>
+					<td class="user_info_title">E-mail:</td>
+					<td class="user_info"> <? echo $data[email]?></td>
+				</tr>
+			</table>
+		</div>
 	</div>
 	</body>
 </html>

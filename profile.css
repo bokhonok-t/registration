@@ -3,7 +3,6 @@ body{
 }
 header{
 	width: 650px;
-	padding: 10px;
 	margin: auto;
 	background-color: #03a9f4;
 	margin-top: 15px;
@@ -36,41 +35,82 @@ header input:active{
 header input:hover{
 	background-color: #4FC3F7;
 }
-
+.icon{
+	color: #fff;
+}
 .info{
 	margin: auto;
 	width: 650px;
 	background: #fff;
-	display: flex;
 	height: auto;
-	padding: 10px;
-	
+	text-align: center;
+	background-color: #03a9f4;
 }
-
-.data{
-	padding-left: 10px;
+.user_name {
+	text-transform: uppercase;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 300;
+	font-size: 25px;
+	color: #fff;
 }
-.data th{
-	padding: 0;
-	margin: 0;
+.user_location{
+	margin-top: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.user_location .location{
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 13px;
+	margin-left: 5px;
+}
+#open{
+	width: 100%;
 	font-family: 'Roboto Condensed', sans-serif;
-	font-weight: 800;
-	font-size: 20px;
+	font-weight: 400;
+	font-size: 19px;
 	color: black;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 20px;
+	background-color: #fff;
+	cursor: pointer;
 }
-.data td{
+#info {
+	background-color: #fff;
+	box-sizing: border-box;
+	position: relative;
+	display: block;
+}
+#info table{
+	margin: auto;
+	margin-bottom: 10px;
+}
+.user_info_title{
 	font-family: 'Roboto Condensed', sans-serif;
 	font-weight: 400;
 }
+.user_title {
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 400;
+}
+#info tr{
+	padding: 5px;
+}
 
 .photo{
-	width: 200px;
-	order: 0;
-	order: -1;
+	margin-bottom: 10px;
+	height: 150px;
+	overflow: hidden;
 }
 
 .photo img{
-	max-width: 200px;
+	max-width: 150px;
+	width: 150px;
+	height: 150px;
+	border-radius: 50% 50%;
 }
 
 .lang{

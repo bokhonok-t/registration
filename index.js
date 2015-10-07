@@ -1,3 +1,6 @@
+$( document ).ready(function() {
+    item_open();
+});
 function validPhone(){
 	var re = /^[\+]380(\d){9}?/;
 	var phone = document.getElementById("phone").value;
@@ -14,7 +17,7 @@ function validMail(){
 	var valid = re.test(mail);
 	var warning = document.getElementById("warn_mail");
 	if (valid) warning.innerHTML = " ";
-	else warning.innerHTML = "<? echo $warn_email?>";
+	else warning.innerHTML = "Неправильный e-mail";
 	return valid;
 }
 
@@ -57,12 +60,12 @@ function validLName(){
 }
 
 function validAdd(){
-	var re = /^[а-яА-ЯёЁa-zA-Z0-9]+[\s]+/;
+	var re = /^[а-яА-ЯёЁa-zA-Z]+$/;
 	var add = document.getElementById("address").value;
 	var valid = re.test(add);
 	var warning = document.getElementById("warn_add");
 	if (valid) warning.innerHTML = " ";
-	else warning.innerHTML = "Адрес должен содержать только буквы и цифры";
+	else warning.innerHTML = "Адрес должен содержать только буквы";
 }
 
 function validFile(){
@@ -91,3 +94,9 @@ function unique(){
             }
         });
     };
+function item_open() {
+	$("#info").hide();
+	$("#open").click(function(){
+		$("#info").slideToggle(500);
+	});
+}

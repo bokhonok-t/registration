@@ -70,7 +70,7 @@ if(isset($_POST['submit'])){
 	$uploadfile = $uploaddir.basename($_FILES['userfile']['name']);
 	//$whitelist = array(".jpg", ".gif", ".png");
  	//foreach ($whitelist as $item) {
-		if(preg_match("/.jpg\$/i", $_FILES['userfile']['name']) or preg_match("/.gif\$/i", $_FILES['userfile']['name']) or preg_match("/.png\$/i", $_FILES['userfile']['name']) ) {
+		if(preg_match("/.jpg\$/i", $_FILES['userfile']['name']) or preg_match("/.gif\$/i", $_FILES['userfile']['name']) or preg_match("/.png\$/i", $_FILES['userfile']['name']) ) {//если формат изображения корректен
 	
 	if ($correct){ //если данные верны, запишем их в базу данных
 		$fname = $_POST['fname'];
@@ -93,14 +93,14 @@ if(isset($_POST['submit'])){
 	}
 	else{
 		mysqli_free_result($sql);
-		header('Location: enter.php'); //в случае удачно регистрации переход на страницу авторизации
+		header('Location: enter.php'); //в случае удачной регистрации переход на страницу авторизации
 		exit;
 	}
 		mysqli_close($dblink);
 	}
-		else echo $warn2; // вывод ошибки на выбраном ранее языке в случае неправильно заполнения одного из полей
+		else echo '<div class = "error">'.$warn2.'</div>'; // вывод ошибки на выбраном ранее языке в случае неправильно заполнения одного из полей
 		}
-		else echo $warn; // вывод ошибки на выбраном ранее языке в случае загрузки неправильного формата картинки
+		else echo '<div class = "error">'.$warn.'</div>'; // вывод ошибки на выбраном ранее языке в случае загрузки неправильного формата картинки
 	
 }
 

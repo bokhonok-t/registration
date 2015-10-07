@@ -2,7 +2,7 @@
 $fname = "First Name";
 $lname = "Last Name";
 $birthday = "Date of Birth";
-$address = "Address";
+$address = "City";
 $phone = "Phone number +380xxxxxxxxx";
 $ph = "Phone number";
 $log = "Logout";
